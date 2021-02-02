@@ -31,10 +31,10 @@ enum custom_keycodes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_moonlander(
-    KC_ESCAPE,      KC_1,           KC_2,           KC_3,           KC_4,           KC_5,           PT_AMPR,                                        KC_ASTR,        KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           PT_QUOT,
-    KC_TAB,         KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,           PT_LBRC,                                        PT_LCBR,        KC_Y,           KC_U,           KC_I,           KC_O,           KC_P,           KC_BSLASH,
+    KC_ESCAPE,      KC_1,           KC_2,           KC_3,           KC_4,           KC_5,           PT_AMPR,                                        PT_ASTR,        KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           PT_QUOT,
+    KC_TAB,         KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,           PT_LBRC,                                        PT_LCBR,        KC_Y,           KC_U,           KC_I,           KC_O,           KC_P,           PT_BSLS,
     KC_DELETE,      KC_A,           KC_S,           KC_D,           KC_F,           KC_G,           PT_RBRC,                                                                        PT_RCBR,        KC_H,           KC_J,           KC_K,           KC_L,           LT(2,PT_ACUT),  LGUI_T(PT_TILD),
-    PT_LSPO,        KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,                                           KC_N,           KC_M,           KC_COMMA,       KC_DOT,         KC_UP,          PT_RSPC,
+    PT_LSPO,        KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,                                           KC_N,           KC_M,           PT_COMM,        PT_DOT,         KC_UP,          PT_RSPC,
     LT(1,PT_LABK),  ST_MACRO_0,     LGUI(KC_LALT),  KC_HYPR,        KC_LCTRL,       ST_MACRO_1,                                                                                                     RALT_T(KC_KP_SLASH),RCTL_T(PT_MINS),PT_PLUS,        KC_LEFT,        KC_DOWN,        KC_RIGHT,
     KC_SPACE,       KC_BSPACE,      KC_LGUI,                        MO(1),          KC_TAB,         KC_ENTER
   ),
