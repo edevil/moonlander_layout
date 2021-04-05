@@ -42,7 +42,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB,         KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,           PT_LBRC,                                        PT_LCBR,        KC_Y,           KC_U,           KC_I,           KC_O,           KC_P,           PT_BSLS,
     KC_DELETE,      KC_A,           KC_S,           KC_D,           KC_F,           KC_G,           PT_RBRC,                                                                        PT_RCBR,        KC_H,           KC_J,           KC_K,           KC_L,           LT(2,PT_ACUT),  LGUI_T(PT_TILD),
     PT_LSPO,        KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,                                           KC_N,           KC_M,           PT_COMM,        PT_DOT,         KC_UP,          PT_RSPC,
-    LT(1,PT_LABK),  ST_MACRO_0,     LGUI(KC_LALT),  PT_AMPR,        LCTL_T(KC_KP_ASTERISK),ST_MACRO_1,                                                                                                     RALT_T(KC_KP_SLASH),RCTL_T(PT_MINS),PT_PLUS,        KC_LEFT,        KC_DOWN,        KC_RIGHT,
+    LT(1,PT_LABK),  ST_MACRO_0,     LGUI(KC_LALT),  PT_AMPR,        LCTL_T(KC_KP_ASTERISK),ST_MACRO_1,                                                                                                     RALT_T(KC_KP_SLASH),RCTL_T(PT_MINS),RALT_T(PT_PLUS),KC_LEFT,        KC_DOWN,        KC_RIGHT,
     KC_SPACE,       KC_BSPACE,      KC_LGUI,                        MO(1),          KC_TAB,         KC_ENTER
   ),
   [1] = LAYOUT_moonlander(
@@ -198,10 +198,7 @@ enum {
     MORE_TAPS
 };
 
-static tap dance_state = {
-    .is_press_action = true,
-    .step = 0
-};
+static tap dance_state[2];
 
 uint8_t dance_step(qk_tap_dance_state_t *state);
 
@@ -233,8 +230,8 @@ void on_dance_0(qk_tap_dance_state_t *state, void *user_data) {
 }
 
 void dance_0_finished(qk_tap_dance_state_t *state, void *user_data) {
-    dance_state.step = dance_step(state);
-    switch (dance_state.step) {
+    dance_state[0].step = dance_step(state);
+    switch (dance_state[0].step) {
         case SINGLE_TAP: register_code16(LCTL(KC_A)); break;
         case SINGLE_HOLD: register_code16(KC_HOME); break;
         case DOUBLE_TAP: register_code16(KC_PGUP); break;
@@ -244,13 +241,13 @@ void dance_0_finished(qk_tap_dance_state_t *state, void *user_data) {
 
 void dance_0_reset(qk_tap_dance_state_t *state, void *user_data) {
     wait_ms(10);
-    switch (dance_state.step) {
+    switch (dance_state[0].step) {
         case SINGLE_TAP: unregister_code16(LCTL(KC_A)); break;
         case SINGLE_HOLD: unregister_code16(KC_HOME); break;
         case DOUBLE_TAP: unregister_code16(KC_PGUP); break;
         case DOUBLE_SINGLE_TAP: unregister_code16(LCTL(KC_A)); break;
     }
-    dance_state.step = 0;
+    dance_state[0].step = 0;
 }
 void on_dance_1(qk_tap_dance_state_t *state, void *user_data);
 void dance_1_finished(qk_tap_dance_state_t *state, void *user_data);
@@ -268,8 +265,8 @@ void on_dance_1(qk_tap_dance_state_t *state, void *user_data) {
 }
 
 void dance_1_finished(qk_tap_dance_state_t *state, void *user_data) {
-    dance_state.step = dance_step(state);
-    switch (dance_state.step) {
+    dance_state[1].step = dance_step(state);
+    switch (dance_state[1].step) {
         case SINGLE_TAP: register_code16(LCTL(KC_E)); break;
         case SINGLE_HOLD: register_code16(KC_END); break;
         case DOUBLE_TAP: register_code16(KC_PGDOWN); break;
@@ -279,13 +276,13 @@ void dance_1_finished(qk_tap_dance_state_t *state, void *user_data) {
 
 void dance_1_reset(qk_tap_dance_state_t *state, void *user_data) {
     wait_ms(10);
-    switch (dance_state.step) {
+    switch (dance_state[1].step) {
         case SINGLE_TAP: unregister_code16(LCTL(KC_E)); break;
         case SINGLE_HOLD: unregister_code16(KC_END); break;
         case DOUBLE_TAP: unregister_code16(KC_PGDOWN); break;
         case DOUBLE_SINGLE_TAP: unregister_code16(LCTL(KC_E)); break;
     }
-    dance_state.step = 0;
+    dance_state[1].step = 0;
 }
 
 qk_tap_dance_action_t tap_dance_actions[] = {
