@@ -3,7 +3,7 @@ Portuguese Mac keyboard layout for ZSA Moonlander
 
 # Building
 
-1. Use QMK 0.13.38
+1. Use QMK 0.14.29
 1. Create link ./keyboards/moonlander/keymaps/edevil to this repo
 1. Export variables
 
